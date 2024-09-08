@@ -1,0 +1,529 @@
+<?xml version="1.0"?>
+<rdf:RDF xmlns="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games/"
+     xml:base="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games/"
+     xmlns:owl="http://www.w3.org/2002/07/owl#"
+     xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:xml="http://www.w3.org/XML/1998/namespace"
+     xmlns:xsd="http://www.w3.org/2001/XMLSchema#"
+     xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+     xmlns:video_games="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#"
+     xmlns:untitled-ontology-4="http://www.semanticweb.org/olevegic/ontologies/2024/8/untitled-ontology-4#">
+    <owl:Ontology rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games">
+        <rdfs:comment>Онтология видеоигр
+
+Классы:
+- VideoGame: Представляет видеоигры.
+- Genre: Представляет жанры видеоигр.
+- Developer: Представляет разработчиков видеоигр.
+
+Свойства:
+- hasGenre: Связь между видеоигрой и ее жанром.
+- hasDeveloper: Связь между видеоигрой и ее разработчиком.
+
+Индивиды:
+- VideoGame: The Witcher 3, Red Dead Redemption 2, Minecraft, и т.д.
+- Genre: RPG, Action, Adventure, и т.д.
+- Developer: CD Projekt Red, Rockstar Games, Mojang, и т.д.
+
+Связи:
+- The Witcher 3 hasGenre RPG
+- The Witcher 3 hasDeveloper CD Projekt Red
+- Red Dead Redemption 2 hasGenre Action
+- Red Dead Redemption 2 hasDeveloper Rockstar Games
+- Minecraft hasGenre Simulation
+- Minecraft hasDeveloper Mojang</rdfs:comment>
+    </owl:Ontology>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Object Properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#hasDeveloper -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#hasDeveloper">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#hasGenre -->
+
+    <owl:ObjectProperty rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#hasGenre">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <rdfs:range rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Genre"/>
+    </owl:ObjectProperty>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Data properties
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.w3.org/2002/07/owl#topDataProperty -->
+
+    <rdf:Description rdf:about="http://www.w3.org/2002/07/owl#topDataProperty">
+        <rdfs:domain rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+    </rdf:Description>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Classes
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Genre -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Genre"/>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame -->
+
+    <owl:Class rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+    
+
+
+    <!-- 
+    ///////////////////////////////////////////////////////////////////////////////////////
+    //
+    // Individuals
+    //
+    ///////////////////////////////////////////////////////////////////////////////////////
+     -->
+
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Action -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Action">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Genre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Activision -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Activision">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Adventure -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Adventure">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Genre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Among_Us -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Among_Us">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#InnerSloth"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Strategy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Apex_Legends -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Apex_Legends">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Respawn_Entertainment"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Shooter"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Bethesda_Game_Studios -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Bethesda_Game_Studios">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Blizzard_Entertainment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Blizzard_Entertainment">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#CD_Projekt_Red -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#CD_Projekt_Red">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Celeste -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Celeste">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Matt_Makes_Games"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Platformer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Cyberpunk_2077 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Cyberpunk_2077">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#CD_Projekt_Red"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#RPG"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Dark_Souls_III -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Dark_Souls_III">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#FromSoftware"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Dota_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Dota_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Valve"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Strategy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Epic_Games -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Epic_Games">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Final_Fantasy_XIV -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Final_Fantasy_XIV">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Square_Enix"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#RPG"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Fortnite -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Fortnite">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Epic_Games"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Shooter"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#FromSoftware -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#FromSoftware">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#GTA_V -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#GTA_V">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Rockstar_Games"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Hollow_Knight -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Hollow_Knight">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Team_Cherry"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#InnerSloth -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#InnerSloth">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#League_of_Legends -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#League_of_Legends">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Riot_Games"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Strategy"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Matt_Makes_Games -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Matt_Makes_Games">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Minecraft -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Minecraft">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Mojang"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Simulation"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Mojang -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Mojang">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Overwatch -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Overwatch">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Blizzard_Entertainment"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Shooter"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Platformer -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Platformer">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Genre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Puzzle -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Puzzle">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Genre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#RPG -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#RPG">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Genre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Racing -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Racing">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Genre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Red_Dead_Redemption_2 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Red_Dead_Redemption_2">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Rockstar_Games"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Action"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Respawn_Entertainment -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Respawn_Entertainment">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Riot_Games -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Riot_Games">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Rockstar_Games -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Rockstar_Games">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Shooter -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Shooter">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Genre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Simulation -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Simulation">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Genre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Sports -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Sports">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Genre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Square_Enix -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Square_Enix">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Strategy -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Strategy">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Genre"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Team_Cherry -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Team_Cherry">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#The_Witcher_3 -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#The_Witcher_3">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#CD_Projekt_Red"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#RPG"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Valorant -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Valorant">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Riot_Games"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Shooter"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Valve -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Valve">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Developer"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#World_of_Warcraft -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#World_of_Warcraft">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Blizzard_Entertainment"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#RPG"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Call_of_Duty:_Warzone -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Call_of_Duty:_Warzone">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Activision"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Shooter"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Counter-Strike:_Global_Offensive -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Counter-Strike:_Global_Offensive">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Valve"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Shooter"/>
+    </owl:NamedIndividual>
+    
+
+
+    <!-- http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Elder_Scrolls_V:_Skyrim -->
+
+    <owl:NamedIndividual rdf:about="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Elder_Scrolls_V:_Skyrim">
+        <rdf:type rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#VideoGame"/>
+        <video_games:hasDeveloper rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#Bethesda_Game_Studios"/>
+        <video_games:hasGenre rdf:resource="http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games#RPG"/>
+    </owl:NamedIndividual>
+</rdf:RDF>
+
+
+
+<!-- Generated by the OWL API (version 4.5.29.2024-05-13T12:11:03Z) https://github.com/owlcs/owlapi -->
+

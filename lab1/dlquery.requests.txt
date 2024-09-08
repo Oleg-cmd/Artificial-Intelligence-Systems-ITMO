@@ -1,0 +1,33 @@
+# Поиск всех RPG игр
+VideoGame and hasGenre value RPG
+
+# Поиск всех игр, разработанных Rockstar Games
+VideoGame and hasDeveloper value Rockstar_Games
+
+# Поиск всех игр, разработанных CD Projekt Red
+VideoGame and hasDeveloper value CD_Projekt_Red
+
+# Поиск всех игр, которые являются RPG и разработаны CD Projekt Red
+VideoGame and hasGenre value RPG and hasDeveloper value CD_Projekt_Red
+
+# Поиск всех игр, которые являются Shooter и не разработаны Rockstar Games
+VideoGame and hasGenre value Shooter and not (hasDeveloper value Rockstar_Games)
+
+# Поиск всех игр, которые являются Action и разработаны Rockstar Games
+VideoGame and hasGenre value Action and hasDeveloper value Rockstar_Games
+
+
+
+sparql
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX owl: <http://www.w3.org/2002/07/owl#>
+PREFIX : <http://www.semanticweb.org/olevegic/ontologies/2024/8/video_games>
+
+SELECT ?game WHERE {
+  ?game rdf:type :VideoGame .
+  ?game :hasGenre :Shooter .
+  FILTER NOT EXISTS { ?game :hasDeveloper :Rockstar_Games }
+}
+
