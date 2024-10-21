@@ -5,11 +5,13 @@ import matplotlib.pyplot as plt
 
 # Пункт 1
 
-dataset = fetch_ucirepo(id=73)
+# dataset = fetch_ucirepo(id=73)
+
+dataset = pd.read_csv('./mushroom.csv')
 
 # Получаем признаки (X) и целевую переменную (y)
-X = dataset.data.features
-y = dataset.data.targets
+X = dataset.drop('poisonous', axis=1)  # Все колонки кроме 'poisonous' являются признаками
+y = dataset['poisonous']  # Целевая переменная - колонка 'poisonous'
 
 # Выводим первые 5 строк признаков:
 print(X.head()) 
@@ -51,30 +53,30 @@ def gini_impurity(y):
 
 
 def find_best_split(X, y):
-    """Поиск лучшего признака и порога для разделения данных."""
+    """Поиск лучшего признака для разделения данных."""
     best_gain = 0  # Начальное значение прироста информации
     best_feature = None  # Лучший признак
-    best_threshold = None  # Лучший порог
+    best_splits = None  # Лучшие разделения
 
     n_features = X.shape[1]  # Количество признаков
     for feature in range(n_features):  # Перебираем все признаки
-        thresholds = np.unique(X[:, feature])  # Уникальные значения признака (возможные пороги)
-        for threshold in thresholds:  # Перебираем все пороги
-            left_X, left_y, right_X, right_y = split_data(X, y, feature, threshold)
-            # Разделяем данные по порогу
+        # Разделяем данные по уникальным значениям признака
+        unique_values = np.unique(X[:, feature])
+        splits = {val: (X[X[:, feature] == val], y[X[:, feature] == val]) for val in unique_values}
+        
+        # Если все значения признака одинаковы, пропускаем этот признак
+        if len(splits) <= 1:
+            continue
 
-            # Если в одной из веток нет данных, пропускаем этот порог
-            if len(left_y) == 0 or len(right_y) == 0:
-                continue
+        # Рассчитываем прирост информации для данного разбиения
+        gain = information_gain(y, [split[1] for split in splits.values()])
+        if gain > best_gain:
+            best_gain = gain
+            best_feature = feature
+            best_splits = splits
 
-            # Расчет прироста информации
-            gain = information_gain(y, left_y, right_y)
-            if gain > best_gain:
-                best_gain = gain
-                best_feature = feature
-                best_threshold = threshold
+    return best_feature, best_splits, best_gain
 
-    return best_feature, best_threshold, best_gain
 
 def split_data(X, y, feature, threshold):
     """Разделение данных по признаку и порогу."""
@@ -82,37 +84,32 @@ def split_data(X, y, feature, threshold):
     right_mask = ~left_mask
     return X[left_mask], y[left_mask], X[right_mask], y[right_mask]
 
-def information_gain(parent, left_child, right_child):
-    """Расчет прироста информации."""
-    weight_left = len(left_child) / len(parent)
-    weight_right = len(right_child) / len(parent)
-    gain = gini_impurity(parent) - (weight_left * gini_impurity(left_child) + weight_right * gini_impurity(right_child))
-    return gain
+def information_gain(parent, splits):
+    """Расчет прироста информации для множества разбиений."""
+    total_len = len(parent)
+    weighted_sum_impurity = sum((len(split) / total_len) * gini_impurity(split) for split in splits)
+    return gini_impurity(parent) - weighted_sum_impurity
 
 
 
 # Протестируем функцию на первых 10 элементах y:
-test_y = y.head(10)['poisonous'].values  # Берем первые 10 значений y
+test_y = y.head(10).values  # Берем первые 10 значений y
 print("Примесь Джини для первых 10 грибов:", gini_impurity(test_y))
 
-best_feature, best_threshold, best_gain = find_best_split(X_selected.values, y['poisonous'].values)
+best_feature, best_threshold, best_gain = find_best_split(X_selected.values, y.values)
 print("Лучший признак:", best_feature)
 print("Лучший порог:", best_threshold)
 print("Прирост информации:", best_gain)
 
-
 class TreeNode:
-    def __init__(self, feature=None, threshold=None, left=None, right=None, value=None, class_counts=None):
-        self.feature = feature  # Индекс признака для разделения
-        self.threshold = threshold  # Порог для разделения
-        self.left = left  # Левый потомок (поддерево)
-        self.right = right  # Правый потомок (поддерево)
+    def __init__(self, feature=None, branches=None, value=None, class_counts=None):
+        self.feature = feature  # Признак для разделения
+        self.branches = branches  # Словарь поддеревьев для каждого уникального значения признака
         self.value = value  # Значение класса в листовом узле (если это лист)
-        self.class_counts = class_counts
-        
+        self.class_counts = class_counts  # Количество объектов каждого класса
         
 def build_tree(X, y, max_depth=5):
-    """Рекурсивная функция построения дерева решений."""
+    """Рекурсивная функция построения небинарного дерева решений."""
     
     # 1. Базовый случай: если все объекты в узле принадлежат к одному классу
     if len(np.unique(y)) == 1:
@@ -127,35 +124,29 @@ def build_tree(X, y, max_depth=5):
         print(f"Листовой узел (макс. глубина): Класс {most_common_class}, Количество: {class_counts}")
         return TreeNode(value=most_common_class, class_counts=class_counts)
 
+    # 3. Находим лучший признак и пороги для разделения
+    best_feature, best_splits, best_gain = find_best_split(X, y)
 
-    # 3. Находим лучший признак и порог для разделения
-    best_feature, best_threshold, best_gain = find_best_split(X, y)
-
-     # 4. Если прирост информации = 0, создаем листовой узел 
+    # 4. Если прирост информации = 0, создаем листовой узел 
     if best_gain == 0:
         most_common_class = np.argmax(np.bincount(y))
         class_counts = dict(zip(*np.unique(y, return_counts=True)))  # Создаем словарь class_counts
         print(f"Листовой узел (нулевой прирост): Класс {most_common_class}, Количество: {class_counts}")
         return TreeNode(value=most_common_class, class_counts=class_counts)
 
-    # 5. Разделяем данные по лучшему признаку и порогу
-    left_X, left_y, right_X, right_y = split_data(X, y, best_feature, best_threshold)
+    # 5. Создаем поддеревья для каждой ветви
+    branches = {}
+    for value, (split_X, split_y) in best_splits.items():
+        branches[value] = build_tree(split_X, split_y, max_depth - 1)
 
-    # 6. Рекурсивно строим поддеревья для левой и правой веток
-    left_subtree = build_tree(left_X, left_y, max_depth - 1)
-    right_subtree = build_tree(right_X, right_y, max_depth - 1)
-
-    # 7. Создаем узел дерева и возвращаем его
-    return TreeNode(feature=best_feature, threshold=best_threshold, 
-                    left=left_subtree, right=right_subtree)
-    
-
+    # 6. Создаем узел дерева и возвращаем его
+    return TreeNode(feature=best_feature, branches=branches)
 
 
 # Пункт 4
 
 # Преобразование y в числовые значения (до построения дерева)
-y_numeric = (y['poisonous'] == 'p').astype(int)  # 'p' -> 1, 'e' -> 0
+y_numeric = (y == 'p').astype(int)  # 'p' -> 1, 'e' -> 0
 
 # Разделение данных на обучающую и тестовую выборки
 np.random.seed(42)
@@ -165,6 +156,7 @@ split_index = int(0.8 * len(X_selected)) # 80/20
 X_train = X_selected.values[indices[:split_index]]
 X_test = X_selected.values[indices[split_index:]]
 y_train = y_numeric.values[indices[:split_index]]
+
 y_test = y_numeric.values[indices[split_index:]]
 
 
@@ -185,20 +177,18 @@ def accuracy(y_true, y_pred):
 
 def predict(tree, x):
     """Предсказание класса для одного объекта."""
-    # print(f"Признак: {tree.feature}, Порог: {tree.threshold}, Значение: {x[tree.feature]}")  # Лог текущего узла
-
     if tree.value is not None:
-        # Листовой узел
-        # print(f"Предсказание: {tree.value}")  # Лог предсказания
-        return tree.value
+        return tree.value  # Если это листовой узел, возвращаем значение класса
+
+    # Иначе ищем ветвь для соответствующего значения признака
+    feature_value = x[tree.feature]
+    
+    if feature_value in tree.branches:
+        return predict(tree.branches[feature_value], x)  # Рекурсивный вызов для поддерева
     else:
-        # Узел с разделением
-        if x[tree.feature] <= tree.threshold:
-            # print("--> True")  # Лог ветки
-            return predict(tree.left, x)
-        else:
-            # print("--> False")  # Лог ветки
-            return predict(tree.right, x)
+        # Если значение признака не представлено в ветвях (например, если новые данные), возвращаем None или делаем другое предсказание
+        return None  # Можно доработать логику для обработки неизвестных значений
+
         
 def precision(y_true, y_pred):
     """Расчет precision."""
@@ -229,11 +219,14 @@ def print_tree(tree, indent=""):
     if tree.value is not None:
         print(indent + "Класс:", tree.value)
     else:
-        print(indent + f"Признак {X_selected.columns[tree.feature]} <= {tree.threshold}")
-        print(indent + "--> True:")
-        print_tree(tree.left, indent + "    ")
-        print(indent + "--> False:")
-        print_tree(tree.right, indent + "    ")
+        # Выводим текущий признак
+        print(indent + f"Признак {X_selected.columns[tree.feature]}")
+        
+        # Для каждого уникального значения признака выводим ветвь
+        for branch_value, subtree in tree.branches.items():
+            print(indent + f"--> Значение {branch_value}:")
+            print_tree(subtree, indent + "    ")
+
 
 def print_rules(tree, indent="", rules=None):
     """Вывод структуры дерева в виде правил."""
@@ -262,16 +255,21 @@ print_tree(tree)
 def predict_proba(tree, x):
     """Предсказание вероятности принадлежности к классу 1."""
     if tree.value is not None:
-        # Листовой узел
+        # Листовой узел: возвращаем вероятности классов
         total_count = sum(tree.class_counts.values())
         proba_1 = tree.class_counts.get(1, 0) / total_count  # Вероятность класса 1
         return proba_1
     else:
-        # Узел с разделением
-        if x[tree.feature] <= tree.threshold:
-            return predict_proba(tree.left, x)
+        # Иначе ищем ветвь для соответствующего значения признака
+        feature_value = x[tree.feature]
+        
+        if feature_value in tree.branches:
+            # Рекурсивно продолжаем для поддерева
+            return predict_proba(tree.branches[feature_value], x)
         else:
-            return predict_proba(tree.right, x)
+            # Если значение признака отсутствует в ветвях, возвращаем NaN или 0.5 
+            return 0.5  # Можно вернуть среднюю вероятность, если не знаем, как обработать значение
+
         
 def calculate_roc_points(y_true, y_probs):
     """Расчет точек для ROC-кривой."""
